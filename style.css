@@ -1,0 +1,9 @@
+.result.wrong{
+	background: red;
+}
+.result.correct{
+	background:  green;
+}
+.new-game{
+	display: none;
+}
