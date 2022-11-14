@@ -13,6 +13,7 @@ const correctGuess = () => {
 	resultPara.textContent = "Congratulations!!! Your guess is correct!!";
 	numberRange.style.display = "none";
 	resultPara.classList.add("correct");
+	resultPara.classList.remove("wrong");
 	newGame();
 }
 
@@ -22,6 +23,7 @@ const wrongGuess = () =>{
 	numberRange.style.display = "block";
 	resultPara.textContent = "Sorry!!! Your guess is wrong!!";
 	resultPara.classList.add("wrong");
+	resultPara.classList.remove("correct");
 }
 
 
