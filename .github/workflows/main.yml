@@ -13,4 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Check the AWS Version
-      run: aws --version
+      run: |
+        aws --version
+        ls -latr
+        pwd
