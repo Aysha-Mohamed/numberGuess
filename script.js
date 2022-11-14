@@ -10,11 +10,11 @@ let counter = 0;
 
 const correctGuess = () => {
 	resultPara.style.display = "block";
-	resultPara.textContent = "Congratulations!!! Your guess is correct!!";
+	/*resultPara.textContent = "Congratulations!!! Your guess is correct!!";*/
 	numberRange.style.display = "none";
 	resultPara.classList.add("correct");
 	resultPara.classList.remove("wrong");
-	newGame();
+	newGame("correctGuess");
 }
 
 
@@ -43,6 +43,7 @@ const lesserNumber = () =>{
 const resetForm = () =>{
 	numberRange.style.display = "none";
 	resultPara.style.display = "none";
+	guessList.style.display = "none";
 	input.value = "";
  	randomNumber = Math.round(Math.random()*100);
  	submit.disabled = false;
@@ -50,10 +51,12 @@ const resetForm = () =>{
  	guessList.textContent = "Previous Guesses: ";
 }
 
-const newGame = () => {
+const newGame = (game = "over") => {
 counter = 0;
 console.log("new game");
+game !== "correctGuess" ? resultPara.textContent = "Game Over !!" : resultPara.textContent = "Congratulations!!! Your guess is correct!!";
 newGameBtn.style.display = "block";
+//numberRange.style.display = "none";
 submit.disabled = true;
 newGameBtn.addEventListener("click",resetForm);
 }
@@ -64,14 +67,11 @@ const checkNumber = () =>{
 	counter++;
 	let inputValue = Number(input.value);
 	let inputValueList = " "+inputValue;
+	guessList.style.display = "block";
 	guessList.append(inputValueList);
 	counter >= 10 && inputValue !== randomNumber ? newGame () : (
 	inputValue === randomNumber ? correctGuess() 
-		: inputValue > randomNumber ? greaterNumber() : lesserNumber());
-	/*: input.value > randomNumber ? "greater"
-	: input.value < randomNumber ? "lesser";*/
-
-	
+		: inputValue > randomNumber ? greaterNumber() : lesserNumber());	
 }
 
 submit.addEventListener("click",checkNumber);
