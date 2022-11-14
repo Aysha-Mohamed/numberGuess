@@ -6,16 +6,18 @@ on:
 
 jobs:
 
-  build:
-
+  deployment:
+    name: Static File Deployment
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-    - name: Check the AWS Version
+    - name: Running AWS Cli command to upload in S3
       run: |
         export AWS_ACCESS_KEY_ID=${{ secrets.username }}
         export AWS_SECRET_ACCESS_KEY=${{ secrets.password }}
         export AWS_DEFAULT_REGION=ap-south-1
-        aws s3 cp . s3://findnumber/ --recursive --exclude="*."
-        aws s3 ls
+        aws s3 cp . s3://findnumber/ --recursive
+        aws s3 rm s3://findnumber/.git --recursive
+        aws s3 rm s3://findnumber/.github --recursive
+        
