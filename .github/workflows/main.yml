@@ -17,5 +17,5 @@ jobs:
         export AWS_ACCESS_KEY_ID=${{ secrets.username }}
         export AWS_SECRET_ACCESS_KEY=${{ secrets.password }}
         export AWS_DEFAULT_REGION=ap-south-1
-        aws s3 cp s3://findnumber . --recursive --exclude="*."
+        aws s3 cp . s3://findnumber/ --recursive --exclude="*."
         aws s3 ls
